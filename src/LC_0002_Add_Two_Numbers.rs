@@ -20,10 +20,9 @@ impl ListNode {
 // T: O(max{m,n}), S: O(max{m,n})
 pub fn add_two_numbers(mut l1: Option<Box<ListNode>>, mut l2: Option<Box<ListNode>>)
                        -> Option<Box<ListNode>> {
-  let mut answer = Some(Box::new(ListNode::new(0)));
+  let mut answer = None;
   let mut ans = &mut answer;
   let mut carry = false;
-  let mut is_unit_digit = true;
 
   while l1.is_some() || l2.is_some() || carry {
     let val = {
@@ -53,9 +52,8 @@ pub fn add_two_numbers(mut l1: Option<Box<ListNode>>, mut l2: Option<Box<ListNod
       val
     };
 
-    if is_unit_digit {
-      ans.as_mut().unwrap().val = val;
-      is_unit_digit = false;
+    if ans.is_none() {
+      ans.replace(Box::new(ListNode::new(val)));
     } else {
       ans.as_mut().unwrap().next = Some(Box::new(ListNode::new(val)));
       ans = &mut ans.as_mut().unwrap().next;
