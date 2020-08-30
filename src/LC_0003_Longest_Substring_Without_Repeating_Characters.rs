@@ -11,7 +11,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
   for (i, c) in s.bytes().enumerate() {
     match map[c as usize] {
       Some(map_v) if map_v >= start => {
-        ans = max(ans,max(map_v - start + 1,i - map_v) as i32);
+        ans = max(ans, max(map_v - start + 1, i - map_v) as i32);
         start = map_v + 1;
       }
       _ => {
@@ -21,7 +21,7 @@ pub fn length_of_longest_substring(s: String) -> i32 {
     map[c as usize] = Some(i);
   }
 
-   max(ans, (s.len() - start) as i32)
+  max(ans, (s.len() - start) as i32)
 }
 
 
